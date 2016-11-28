@@ -55,6 +55,8 @@ int main(int argc, char * argv[])
 {
 	const char * pPath1 = "D:\\work\\pictures\\dump_shot_input_main_4224x3136_4224x3136.jpg";
 	const char * pPath2 = "D:\\work\\pictures\\dump_shot_input_aux_4224x3136_4224x3136.jpg";
+	const char * pPath2WarpTo1 = "D:\\work\\pictures\\2WarpTo1.jpg";
+	const char * pPath1Sub2 = "D:\\work\\pictures\\1Sub2.jpg";
 	Mat imgSrc1 = imread(pPath1, CV_LOAD_IMAGE_GRAYSCALE);
 	Mat imgSrc2 = imread(pPath2, CV_LOAD_IMAGE_GRAYSCALE);
 	if (imgSrc1.empty() || imgSrc2.empty())
@@ -108,19 +110,24 @@ int main(int argc, char * argv[])
 
 	vector<Point2f> mpts_1, mpts_2;
 	matches2points(matches_popcount, kpts_1, kpts_2, mpts_1, mpts_2); //Extract a list of the (x,y) location of the matches
-	vector<char> outlier_mask;
+	Mat outlier_mask;
 	Mat H = findHomography(mpts_2, mpts_1, RANSAC, 1, outlier_mask);
 
 	Mat outimg;
 	drawMatches(img_2, kpts_2, img_1, kpts_1, matches_popcount, outimg, Scalar::all(-1), Scalar::all(-1), outlier_mask);
+	namedWindow("matches - popcount - outliers removed", WINDOW_NORMAL);
 	imshow("matches - popcount - outliers removed", outimg);
 
 	Mat warped;
 	Mat diff;
 	warpPerspective(img_2, warped, H, img_1.size());
+	namedWindow("warped", WINDOW_NORMAL);
 	imshow("warped", warped);
 	absdiff(img_1, warped, diff);
+	namedWindow("diff", WINDOW_NORMAL);
 	imshow("diff", diff);
+	imwrite(pPath2WarpTo1, warped);
+	imwrite(pPath1Sub2, diff);
 	waitKey();
 
 	return 0;
