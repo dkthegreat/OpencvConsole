@@ -89,7 +89,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(OPENCV_2_4_13_ROOT_DIR)\sources\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\features2d\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\flann\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\core\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\highgui\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\nonfree\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\calib3d\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\imgproc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OPENCV_2_4_13_ROOT_DIR)\sources\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\features2d\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\flann\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\core\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\highgui\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\nonfree\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\calib3d\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\imgproc\include;$(OPENCV_2_4_13_ROOT_DIR)\sources\modules\photo\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -107,7 +107,8 @@ copy $(OPENCV_2_4_13_DLL_DIR)\$(Configuration)\opencv_imgproc2413d.dll $(Configu
 copy $(OPENCV_2_4_13_DLL_DIR)\$(Configuration)\opencv_ocl2413d.dll $(Configuration)\
 copy $(OPENCV_2_4_13_DLL_DIR)\$(Configuration)\opencv_ml2413d.dll $(Configuration)\
 copy $(OPENCV_2_4_13_DLL_DIR)\$(Configuration)\opencv_objdetect2413d.dll $(Configuration)\
-copy $(OPENCV_2_4_13_DLL_DIR)\$(Configuration)\opencv_calib3d2413d.dll $(Configuration)\</Command>
+copy $(OPENCV_2_4_13_DLL_DIR)\$(Configuration)\opencv_calib3d2413d.dll $(Configuration)\
+copy $(OPENCV_2_4_13_DLL_DIR)\$(Configuration)\opencv_photo2413d.dll $(Configuration)\</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -165,6 +166,7 @@ copy $(OPENCV_2_4_13_DLL_DIR)\$(Configuration)\opencv_calib3d2413d.dll $(Configu
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="dwt.cpp" />
     <ClCompile Include="OpencvConsole.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
